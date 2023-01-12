@@ -1,24 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 
 //include images into your bundle
-import rigoImage from "../../img/rigo-baby.jpg";
+import trafficlight from "../../img/trafficlight.png";
 
 //create your first component
 const Home = () => {
+	const [isSelected, setIsSelected] = useState('');
+	const handleClick = e => {
+		// e.currentTarget.classList.add('selected')
+		
+		if (e.currentTarget.classList == 'red-light') {
+			setIsSelected(e.currentTarget.classList.add('selected'))
+		} else if (e.currentTarget.classList == 'yellow-light') {
+			setIsSelected(e.currentTarget.classList.add('selected'))
+		} else if (e.currentTarget.classList == 'green-light') {
+			setIsSelected(e.currentTarget.classList.add('selected'))
+		}
+
+	};
 	return (
-		<div className="text-center">
-			<h1 className="text-center mt-5">Hello Rigo!</h1>
-			<p>
-				<img src={rigoImage} />
-			</p>
-			<a href="#" className="btn btn-success">
-				If you see this green button... bootstrap is working...
-			</a>
-			<p>
-				Made by{" "}
-				<a href="http://www.4geeksacademy.com">4Geeks Academy</a>, with
-				love!
-			</p>
+		<div className="container">
+			<h1>Traffic Light</h1>
+			<div className="lights">
+				<div className='red-light' onClick={handleClick}></div>
+				<div className='yellow-light' onClick={handleClick}></div>
+				<div className='green-light' onClick={handleClick} ></div>
+			</div >
+			<div><img id="traffic" src={trafficlight} /></div>
+
 		</div>
 	);
 };
