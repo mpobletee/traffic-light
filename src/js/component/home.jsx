@@ -1,35 +1,22 @@
 import React, { useState } from "react";
-
+import Lights from "./Lights.jsx";
 //include images into your bundle
-import trafficlight from "../../img/trafficlight.png";
 
 //create your first component
 const Home = () => {
-	const [isSelected, setIsSelected] = useState('');
-	const handleClick = e => {
-		// e.currentTarget.classList.add('selected')
-		
-		if (e.currentTarget.classList == 'red-light') {
-			setIsSelected(e.currentTarget.classList.add('selected'))
-		} else if (e.currentTarget.classList == 'yellow-light') {
-			setIsSelected(e.currentTarget.classList.add('selected'))
-		} else if (e.currentTarget.classList == 'green-light') {
-			setIsSelected(e.currentTarget.classList.add('selected'))
-		}
+    const colors = ['red', 'yellow', 'green'];
+    const [select, setSelect] = useState("gray")
 
-	};
-	return (
+    return (
 		<div className="container">
-			<h1>Traffic Light</h1>
-			<div className="lights">
-				<div className='red-light' onClick={handleClick}></div>
-				<div className='yellow-light' onClick={handleClick}></div>
-				<div className='green-light' onClick={handleClick} ></div>
-			</div >
-			<div><img id="traffic" src={trafficlight} /></div>
+            {colors.map((color) => {
+                return <Lights key={color} color={color} select={select} setSelect={setSelect} />
+            })};
+			<div className="pilar"></div>
+        </div>
+    )
 
-		</div>
-	);
+
 };
 
 export default Home;
